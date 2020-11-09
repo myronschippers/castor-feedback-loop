@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class ReviewPage extends Component {
   submitFeedback = (event) => {
-    // navigate to next step
-    this.props.history.push('/thank-you');
+    this.postFeedback();
   };
 
+  postFeedback() {
+    axios
+      .post('/api/feedback', this.props.store.feedback)
+      .then((response) => {
+        // navigate to next step
+        this.props.history.push('/thank-you');
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('Terrible feedback, try again.');
+      });
+  }
+
   render() {
+    const feedback = this.props.store.feedback;
+
     return (
       <div>
         <h3>Review Your Feedback</h3>
-        <p>Feeling: {this.props.store.feedback.feeling}</p>
-        <p>Understanding: {this.props.store.feedback.understanding}</p>
-        <p>Support: {this.props.store.feedback.support}</p>
-        <p>Comments: {this.props.store.feedback.comments}</p>
+        <p>Feeling: {feedback.feeling}</p>
+        <p>Understanding: {feedback.understanding}</p>
+        <p>Support: {feedback.support}</p>
+        <p>Comments: {feedback.comments}</p>
         <button onClick={this.submitFeedback}>Submit</button>
       </div>
     );

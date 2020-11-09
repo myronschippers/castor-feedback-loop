@@ -10,7 +10,7 @@ class CommentsPage extends Component {
     event.preventDefault();
     // send feelings to reducer
     this.props.dispatch({
-      type: 'SAVE_COMMENTS',
+      type: 'SAVE_FEEDBACK',
       payload: this.state,
     });
     // navigate to next step

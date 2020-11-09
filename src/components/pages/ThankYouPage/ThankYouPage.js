@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ThankYouPage extends Component {
   handleClickRestart = (event) => {
+    this.props.dispatch({
+      type: 'CLEAR_FEEDBACK',
+    });
     // navigate to next step
     this.props.history.push('/');
   };
@@ -16,4 +20,4 @@ class ThankYouPage extends Component {
   }
 }
 
-export default ThankYouPage;
+export default connect()(ThankYouPage);

@@ -15,6 +15,28 @@ const defaultFeedback = {
   comments: '',
 };
 function feedback(state = defaultFeedback, action) {
+  // check for dispatches
+  if (action.type === 'SAVE_FEELING') {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  } else if (action.type === 'SAVE_UNDERSTANDING') {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  } else if (action.type === 'SAVE_SUPPORT') {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  } else if (action.type === 'SAVE_COMMENTS') {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  }
   return state;
 }
 
